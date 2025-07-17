@@ -1,0 +1,74 @@
+{% extends "base_admin.html" %}
+{% block title %}Panel Admin{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+  <h2 class="mb-4">Panel de Administración</h2>
+
+  <div class="row">
+    <!-- Provincias -->
+    <div class="col-lg-3 col-6">
+      <div class="small-box bg-info">
+        <div class="inner">
+          <h3>{{ provincias_count }}</h3>
+          <p>Provincias</p>
+        </div>
+        <div class="icon">
+          <i class="fas fa-city"></i>
+        </div>
+        <a href="{{ url_for('admin_bp.provincias') }}" class="small-box-footer">
+          Ver <i class="fas fa-arrow-circle-right"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- Conexiones -->
+    <div class="col-lg-3 col-6">
+      <div class="small-box bg-success">
+        <div class="inner">
+          <h3>{{ conexiones_count }}</h3>
+          <p>Conexiones</p>
+        </div>
+        <div class="icon">
+          <i class="fas fa-link"></i>
+        </div>
+        <a href="{{ url_for('admin_bp.conexiones') }}" class="small-box-footer">
+          Ver <i class="fas fa-arrow-circle-right"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- Consultas -->
+    <div class="col-lg-3 col-6">
+      <div class="small-box bg-warning">
+        <div class="inner">
+          <h3>{{ consultas_count }}</h3>
+          <p>Consultas realizadas</p>
+        </div>
+        <div class="icon">
+          <i class="fas fa-history"></i>
+        </div>
+        <a href="{{ url_for('admin_bp.ver_grafo') }}" class="small-box-footer">
+          Ver Grafo <i class="fas fa-arrow-circle-right"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- Usuarios -->
+    <div class="col-lg-3 col-6">
+      <div class="small-box bg-danger">
+        <div class="inner">
+          <h3>{{ usuarios_count }}</h3>
+          <p>Usuarios Registrados</p>
+        </div>
+        <div class="icon">
+          <i class="fas fa-users"></i>
+        </div>
+        <a href="{{ url_for('admin_bp.usuarios') }}" class="small-box-footer">
+          Ver Usuarios <i class="fas fa-arrow-circle-right"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

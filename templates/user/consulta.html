@@ -1,0 +1,61 @@
+{% extends "base_user.html" %}
+{% block title %}Consulta de Ruta{% endblock %}
+{% block content %}
+
+<h1 class="mb-4 text-purple">Consulta de Ruta</h1>
+
+<form method="POST" class="mb-4">
+  <div class="form-row">
+    <div class="form-group col-md-5">
+      <label for="origen" class="text-purple">Origen</label>
+      <select id="origen" name="origen" class="form-control" required>
+        <option value="" disabled {% if not request.form.origen %}selected{% endif %}>Seleccione origen</option>
+        {% for c in ciudades %}
+          <option value="{{ c }}"
+                  {% if request.form.origen == c %}selected{% endif %}>
+            {{ c }}
+          </option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <div class="form-group col-md-5">
+      <label for="destino" class="text-purple">Destino</label>
+      <select id="destino" name="destino" class="form-control" required>
+        <option value="" disabled {% if not request.form.destino %}selected{% endif %}>Seleccione destino</option>
+        {% for c in ciudades %}
+          <option value="{{ c }}"
+                  {% if request.form.destino == c %}selected{% endif %}>
+            {{ c }}
+          </option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <div class="form-group col-md-2 align-self-end">
+      <button type="submit" class="btn btn-primary btn-block">
+        Buscar
+      </button>
+    </div>
+  </div>
+</form>
+
+{% if resultado %}
+  <div class="card p-3 border-success shadow-sm">
+    <div class="card-body">
+      <h5 class="text-success">Resultado de la Ruta</h5>
+      <p><strong>🛣️ Ruta:</strong> {{ resultado['camino']|join(' → ') }}</p>
+      <p><strong>💰 Costo total:</strong> {{ resultado['costo'] }} $</p>
+      <p><strong>🌊 Ciudad costera:</strong>
+        {{ '✅ Sí' if resultado['costera'] else '❌ No' }}
+      </p>
+      <hr>
+      <img
+        src="{{ url_for('graph_bp.mostrar_grafo', camino=resultado['camino']|join(',')) }}"
+        class="img-fluid border rounded mt-3"
+        alt="Grafo con ruta resaltada">
+    </div>
+  </div>
+{% endif %}
+
+{% endblock %}

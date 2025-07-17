@@ -1,0 +1,8 @@
+{% extends "base_admin.html" %}
+{% block title %}Ver Grafo{% endblock %}
+{% block content %}
+<div class="container-fluid text-center">
+  <h2 class="mb-4">Visualizar Grafo</h2>
+  <img src="{{ url_for('graph_bp.mostrar_grafo') }}" class="img-fluid border" alt="Grafo de Rutas">
+</div>
+{% endblock %}
