@@ -1,0 +1,31 @@
+﻿{% extends "base_user.html" %}
+{% block title %}Historial de Búsquedas{% endblock %}
+{% block content %}
+<h1>📋 Historial de mis Búsquedas</h1>
+{% if datos %}
+<div class="card">
+<table class="table">
+<thead>
+<tr>
+<th>Origen</th>
+<th>Destino</th>
+<th>Costo</th>
+<th>Fecha</th>
+</tr>
+</thead>
+<tbody>
+{% for busqueda in datos %}
+<tr>
+<td>{{ busqueda.origen }}</td>
+<td>{{ busqueda.destino }}</td>
+<td>{{ busqueda.costo }}</td>
+<td>{{ busqueda.fecha.strftime('%d/%m/%Y') }}</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+{% else %}
+<p>No hay búsquedas registradas</p>
+{% endif %}
+{% endblock %}

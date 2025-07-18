@@ -9,10 +9,10 @@
     <div class="form-group col-md-5">
       <label for="origen" class="text-purple">Origen</label>
       <select id="origen" name="origen" class="form-control" required>
-        <option value="" disabled {% if not request.form.origen %}selected{% endif %}>Seleccione origen</option>
+        <option value="" disabled {% if not (request.form.origen or origen_prellenado) %}selected{% endif %}>Seleccione origen</option>
         {% for c in ciudades %}
           <option value="{{ c }}"
-                  {% if request.form.origen == c %}selected{% endif %}>
+                  {% if (request.form.origen == c) or (origen_prellenado == c) %}selected{% endif %}>
             {{ c }}
           </option>
         {% endfor %}
@@ -22,10 +22,10 @@
     <div class="form-group col-md-5">
       <label for="destino" class="text-purple">Destino</label>
       <select id="destino" name="destino" class="form-control" required>
-        <option value="" disabled {% if not request.form.destino %}selected{% endif %}>Seleccione destino</option>
+        <option value="" disabled {% if not (request.form.destino or destino_prellenado) %}selected{% endif %}>Seleccione destino</option>
         {% for c in ciudades %}
           <option value="{{ c }}"
-                  {% if request.form.destino == c %}selected{% endif %}>
+                  {% if (request.form.destino == c) or (destino_prellenado == c) %}selected{% endif %}>
             {{ c }}
           </option>
         {% endfor %}

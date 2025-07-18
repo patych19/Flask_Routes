@@ -42,12 +42,9 @@ def provincias():
     if request.method == 'POST':
         nombre = request.form['nombre'].strip().title()
         es_costera = 'es_costera' in request.form
-        existente = Provincia.query.filter_by(nombre=nombre).first()
-        if existente:
-            flash('La provincia ya existe.', 'danger')
-        else:
-            agregar_provincia(nombre, es_costera)
-            flash('Provincia agregada con éxito.', 'success')
+        
+        # Llamar la función del controlador (ya maneja los flash messages)
+        agregar_provincia(nombre, es_costera)
         return redirect(url_for('admin_bp.provincias'))
 
     provincias = listar_provincias()
